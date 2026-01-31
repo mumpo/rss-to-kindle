@@ -4,9 +4,9 @@ fn main() {
         "https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0",
     ];
 
-    let chan = rss_to_kindle::get_feed_from_url("https://www.eldiario.es/rss/").unwrap();
+    let feed = rss_to_kindle::feed::fetch_feed("https://www.eldiario.es/rss/").unwrap();
 
-    for item in chan.items().iter().take(10) {
-        println!("item {}", item.title().unwrap_or_default())
+    for article in feed.articles.iter().take(10) {
+        println!("item {}", article.title)
     }
 }
